@@ -6,6 +6,11 @@ exec 1>/tmp/cloudcreation_log.out 2>&1
 export HAIL_HOME="/opt/hail-on-AWS-spot-instances"
 export HASH="current"
 
+wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
+tar -xJf node-v12.13.0-linux-x64.tar.xz
+echo 'export PATH=~/node-v12.13/bin:$PATH' >> ~/.bash_profile
+export PATH=~/node-v12.13/bin:$PATH
+
 # Error message
 error_msg ()
 {
