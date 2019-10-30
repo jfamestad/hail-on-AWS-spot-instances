@@ -172,6 +172,16 @@ use password: **`avillach`** to login. If you successfully log in, you are all s
 ## FAQs and troubleshooting
 
 * If after executing `sh cloudformation_hail_spot.sh` you get an error message saying that "variable cluster_id_json is out of range" it means that the CLI command `aws emr create-cluster --applications Name=Hadoop Name=Spark ...` did not retrieve a cluster ID. This error occurs due to different reasons: a defective AWS account configuration (`aws configure`), the user needs additional permits such as AmazonElasticMapReduce* or  AmazonEC2*. 
+  
+* default IAM roles for EMR are not present in your account by default. If you have not created them, you may encounter the error 
+
+```An error occurred (ValidationException) when calling the RunJobFlow operation: Invalid InstanceProfile: EMR_EC2_DefaultRole.```
+
+ If this comes up, you can fix with the command:  
+  
+```
+aws emr create-default-roles
+```
 
 * Some times you may get sudden or unexpected errors. One of the reasons may be the fact that your initial spot instances can be dropped and replaced by a new instance (that's how the spot instance model works). This `cloudformation` tool constantly --every minute-- checks for this behavior and will fix everything for you. A common error when an instance is replaced is:
 
