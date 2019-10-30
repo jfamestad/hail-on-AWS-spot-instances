@@ -5,6 +5,11 @@ set -e
 
 export PATH=$PATH:/usr/local/bin
 
+wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
+tar -xJf node-v12.13.0-linux-x64.tar.xz
+echo 'export PATH=~/node-v12.13/bin:$PATH' >> ~/.bash_profile
+export PATH=~/node-v12.13/bin:$PATH
+
 cd $HOME
 mkdir -p $HOME/.ssh/id_rsa
 sudo yum install python36 python36-devel python36-setuptools -y 
